@@ -12,6 +12,24 @@ func TestApiService_Candles(t *testing.T) {
 		"type":     "12hour",
 		"symbol":   "BTC-USDT",
 	}
+	var sayHelloWorld = func(i int) {
+		rsp, err := s.CandleHistory(params)
+		if err != nil {
+			t.Log(err.Error(), i)
+		}
+		cm := make([]*Candle, 0, 10)
+		if err := rsp.ReadData(&cm); err != nil {
+			t.Log(err.Error(), i)
+		}
+		t.Log(i, "----", ToJsonString(cm))
+		return
+	}
+
+	for i := 0; i < 17; i++ {
+		t.Log(i)
+		go sayHelloWorld(i)
+	}
+
 	rsp, err := s.CandleHistory(params)
 	if err != nil {
 		t.Fatal(err)

@@ -7,7 +7,12 @@ import (
 )
 
 func TestApiService_Accounts(t *testing.T) {
-	s := NewApiServiceFromEnv()
+	//s := NewApiServiceFromEnv()
+	s := NewApiService(
+		ApiKeyOption("61e8e4fd5591960001277950"),
+		ApiSecretOption("b40e2c60-434b-4cda-91bd-db6535522378"),
+		ApiPassPhraseOption("qpx.FNW5zbf3kac!dpe"),
+		ApiKeyVersionOption("2"))
 	rsp, err := s.Accounts("", "")
 	if err != nil {
 		t.Fatal(err)

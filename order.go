@@ -19,7 +19,7 @@ type CreateOrderModel struct {
 	Price       string `json:"price,omitempty"`
 	Size        string `json:"size,omitempty"`
 	TimeInForce string `json:"timeInForce,omitempty"`
-	CancelAfter int64 `json:"cancelAfter,omitempty"`
+	CancelAfter int64  `json:"cancelAfter,omitempty"`
 	PostOnly    bool   `json:"postOnly,omitempty"`
 	Hidden      bool   `json:"hidden,omitempty"`
 	IceBerg     bool   `json:"iceberg,omitempty"`
@@ -92,36 +92,42 @@ func (as *ApiService) CancelOrders(p map[string]string) (*ApiResponse, error) {
 
 // An OrderModel represents an order.
 type OrderModel struct {
-	Id            string `json:"id"`
-	Symbol        string `json:"symbol"`
-	OpType        string `json:"opType"`
-	Type          string `json:"type"`
-	Side          string `json:"side"`
-	Price         string `json:"price"`
-	Size          string `json:"size"`
-	Funds         string `json:"funds"`
-	DealFunds     string `json:"dealFunds"`
-	DealSize      string `json:"dealSize"`
-	Fee           string `json:"fee"`
-	FeeCurrency   string `json:"feeCurrency"`
-	Stp           string `json:"stp"`
-	Stop          string `json:"stop"`
-	StopTriggered bool   `json:"stopTriggered"`
-	StopPrice     string `json:"stopPrice"`
-	TimeInForce   string `json:"timeInForce"`
-	PostOnly      bool   `json:"postOnly"`
-	Hidden        bool   `json:"hidden"`
-	IceBerg       bool   `json:"iceberg"`
-	VisibleSize   string `json:"visibleSize"`
-	CancelAfter   int64 `json:"cancelAfter"`
-	Channel       string `json:"channel"`
-	ClientOid     string `json:"clientOid"`
-	Remark        string `json:"remark"`
-	Tags          string `json:"tags"`
-	IsActive      bool   `json:"isActive"`
-	CancelExist   bool   `json:"cancelExist"`
-	CreatedAt     int64  `json:"createdAt"`
-	TradeType     string `json:"tradeType"`
+	Id                string      `json:"id"`
+	Symbol            string      `json:"symbol"`
+	OpType            string      `json:"opType"`
+	Type              string      `json:"type"`
+	Side              string      `json:"side"`
+	Price             string      `json:"price"`
+	Size              string      `json:"size"`
+	Funds             string      `json:"funds"`
+	DealFunds         string      `json:"dealFunds"`
+	DealSize          string      `json:"dealSize"`
+	Fee               string      `json:"fee"`
+	FeeCurrency       string      `json:"feeCurrency"`
+	Stp               string      `json:"stp"`
+	Stop              string      `json:"stop"`
+	StopTriggered     bool        `json:"stopTriggered"`
+	StopPrice         string      `json:"stopPrice"`
+	TimeInForce       string      `json:"timeInForce"`
+	PostOnly          bool        `json:"postOnly"`
+	Hidden            bool        `json:"hidden"`
+	Iceberge          bool        `json:"iceberge"`
+	Iceberg           bool        `json:"iceberg"`
+	VisibleSize       string      `json:"visibleSize"`
+	CancelAfter       int64       `json:"cancelAfter"`
+	Channel           string      `json:"channel"`
+	ClientOID         interface{} `json:"clientOid"`
+	Remark            interface{} `json:"remark"`
+	Tags              interface{} `json:"tags"`
+	CancelExist       bool        `json:"cancelExist"`
+	DomainID          string      `json:"domainId"`
+	CreatedAt         int64       `json:"createdAt"`
+	IsActive          bool        `json:"isActive"`
+	TradeSource       string      `json:"tradeSource"`
+	TradeType         string      `json:"tradeType"`
+	PriceLimitTrigger bool        `json:"priceLimitTrigger"`
+	CompletionAt      int64       `json:"completionAt"`
+	DisplayType       string      `json:"displayType"`
 }
 
 // A OrdersModel is the set of *OrderModel.

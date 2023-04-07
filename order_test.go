@@ -122,13 +122,22 @@ func TestApiService_CancelOrders(t *testing.T) {
 }
 
 func TestApiService_Orders(t *testing.T) {
-	s := NewApiServiceFromEnv()
-	p := &PaginationParam{CurrentPage: 1, PageSize: 10}
-	rsp, err := s.Orders(map[string]string{}, p)
+	//s := NewApiServiceFromEnv()
+	s := NewApiService(
+		ApiKeyOption("61e8e4fd5591960001277950"),
+		ApiSecretOption("b40e2c60-434b-4cda-91bd-db6535522378"),
+		ApiPassPhraseOption("qpx.FNW5zbf3kac!dpe"),
+		ApiKeyVersionOption("2"))
+	p := &PaginationParam{CurrentPage: 1, PageSize: 50}
+	var f = map[string]string{}
+	f["tradeType"] = "TRADE"
+	rsp, err := s.Orders(f, p)
 	if err != nil {
 		t.Fatal(err)
 	}
-
+	t.Log(string(rsp.response.request.fullURL))
+	t.Log(rsp.response.request.Header)
+	t.Log(string(rsp.RawData))
 	os := OrdersModel{}
 	if _, err := rsp.ReadPaginationData(&os); err != nil {
 		t.Fatal(err)
@@ -183,8 +192,12 @@ func TestApiService_V1Orders(t *testing.T) {
 }
 
 func TestApiService_Order(t *testing.T) {
-	s := NewApiServiceFromEnv()
-
+	//s := NewApiServiceFromEnv()
+	s := NewApiService(
+		ApiKeyOption("61e8e4fd5591960001277950"),
+		ApiSecretOption("b40e2c60-434b-4cda-91bd-db6535522378"),
+		ApiPassPhraseOption("qpx.FNW5zbf3kac!dpe"),
+		ApiKeyVersionOption("2"))
 	p := &PaginationParam{CurrentPage: 1, PageSize: 10}
 	rsp, err := s.Orders(map[string]string{}, p)
 	if err != nil {
@@ -196,6 +209,7 @@ func TestApiService_Order(t *testing.T) {
 		t.Fatal(err)
 	}
 	if len(os) == 0 {
+		t.Log("Empty Response")
 		t.SkipNow()
 	}
 
